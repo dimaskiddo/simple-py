@@ -1,0 +1,41 @@
+version: '2'
+
+volumes:
+  redis_data: {}
+
+networks:
+  examplenet:
+    driver: bridge
+
+services:
+  redis:
+    image: 'dimaskiddo/alpine:redis-3.2'
+    networks:
+      - examplenet
+    volumes:
+      - redis_data:/var/lib/redis/data
+    restart: always
+
+  app:
+    build:
+      context: .
+      dockerfile: ./Dockerfile
+    image: 'dimaskiddo/simple-py:latest'
+    networks:
+      - examplenet
+    depends_on:
+      - redis
+    restart: always
+
+  nginx:
+    image: 'dimaskiddo/alpine:nginx-1.12.2'
+    networks:
+      - examplenet
+    ports:
+      - 80:8080
+    volumes:
+      - ./volumes/nginx:/var/www/data
+    depends_on:
+      - redis
+      - app
+    restart: always
