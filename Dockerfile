@@ -1,4 +1,4 @@
-FROM dimaskiddo/alpine:python-2.7
+FROM dimaskiddo/alpine:python-3.6
 MAINTAINER Dimas Restu Hidayanto <dimas.restu@student.upi.edu>
 
 # Set Some Environment Variable
