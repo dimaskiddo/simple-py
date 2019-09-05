@@ -1,5 +1,4 @@
 import os
-import socket
 
 from flask import Flask
 from redis import Redis, RedisError
@@ -7,14 +6,18 @@ from redis import Redis, RedisError
 
 # Redis Connection Variable
 redis_host = os.getenv("REDIS_HOST", "127.0.0.1")
-redis_port = os.getenv("REDIS_PORT", 6379)
-redis_pass = os.getenv("REDIS_PASSWORD", None)
+redis_port = int(os.getenv("REDIS_PORT", 6379))
+redis_pass = os.getenv("REDIS_PASSWORD", "")
+
+
+# Debug Print Redis Connection Variable
+print(f"Redis Host: {redis_host}:{redis_port}")
+print(f"Redis Pass: {redis_pass}")
 
 
 # Library Variable
 app = Flask(__name__)
-redis = Redis(host=redis_host, port=redis_port, password=redis_pass,
-              db=0, socket_connect_timeout=2, socket_timeout=2)
+redis = Redis(host=redis_host, port=redis_port, password=redis_pass, db=0, socket_connect_timeout=2, socket_timeout=2)
 
 
 # Main Application
