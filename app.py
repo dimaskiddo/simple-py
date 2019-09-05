@@ -6,7 +6,7 @@ from redis import Redis, RedisError
 
 # Redis Connection Variable
 redis_host = os.getenv("REDIS_HOST", "127.0.0.1")
-redis_port = int(os.getenv("REDIS_PORT", 6379))
+redis_port = os.getenv("REDIS_PORT", 6379)
 redis_pass = os.getenv("REDIS_PASSWORD", "")
 
 
