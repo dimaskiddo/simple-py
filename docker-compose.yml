@@ -12,6 +12,8 @@ services:
     image: 'dimaskiddo/alpine:redis-3.2'
     networks:
       - examplenet
+    environment:
+      - REDIS_PASSWORD=simplepy
     volumes:
       - redis_data:/var/lib/redis/data
     restart: always
@@ -23,6 +25,9 @@ services:
     image: 'dimaskiddo/simple-py:latest'
     networks:
       - examplenet
+    environment:
+      - REDIS_HOST=redis
+      - REDIS_PASSWORD=simplepy
     depends_on:
       - redis
     restart: always

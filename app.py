@@ -18,7 +18,8 @@ print(f"Redis Pass: {redis_pass}")
 
 # Library Variable
 app = Flask(__name__)
-redis = Redis(host=redis_host, port=redis_port, password=redis_pass, db=0, socket_connect_timeout=2, socket_timeout=2)
+redis = Redis(host=redis_host, port=redis_port, password=redis_pass, db=0,
+              socket_connect_timeout=2, socket_timeout=2)
 
 
 # Main Application
